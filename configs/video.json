@@ -1,0 +1,146 @@
+{
+  "space_name": "Video",
+  "wrike": {
+    "space_id": "IEAFDA5SI4ZLTFWS",
+    "base_url": "https://app-us2.wrike.com/api/v4"
+  },
+  "airtable": {
+    "base_id": "appUrOEdah6UAhn8F",
+    "tables": {
+      "projects": {
+        "table_id": "tbl6m8VWgPkDkXRU4",
+        "upsert_key": {"name": "Wrike ID", "id": "fldquO7sutPL2jHMM"}
+      },
+      "tasks": {
+        "table_id": "tblNuxj2mcYHJWQpO",
+        "upsert_key": {"name": "Wrike ID", "id": "fld920IJTSZedfva3"}
+      },
+      "timelogs": {
+        "table_id": "tblVnRMTd025i5QkG",
+        "upsert_key": [
+          {"name": "week_range", "id": "fldbjEdxfQAFK6J7E"},
+          {"name": "user_id", "id": "fldKsI2Xui09NPdE7"},
+          {"name": "task_id", "id": "fldGCdahKPqQZncPL"}
+        ]
+      }
+    },
+    "lookups": {
+      "people":           { "table_id": "tblP5ENj2vJjbujlU", "key_field": "Wrike ID",  "value_field": "Record ID" },
+      "projects":         { "table_id": "tbl6m8VWgPkDkXRU4", "key_field": "Wrike ID",  "value_field": "Record ID" },
+      "tasks":            { "table_id": "tblNuxj2mcYHJWQpO", "key_field": "Wrike ID",  "value_field": "Record ID" },
+      "status":           { "table_id": "tbl40kZB8bHvVVRHn", "key_field": "Name",      "value_field": "Record ID" },
+      "weeks":            { "table_id": "tblzLIul4RTJ76bhV", "key_field": "Name",      "value_field": "Record ID" },
+      "task_assignments": { "table_id": "tblBdbaosXkp6wYAD", "key_field": "Name",      "value_field": "Record ID" }
+    }
+  },
+  "projects": {
+    "field_mapping": {
+      "id":                                    {"name": "Wrike ID", "id": "fldquO7sutPL2jHMM"},
+      "title":                                 {"name": "Project Name", "id": "flddyE7rHIZj8R4q3"},
+      "description":                           {"name": "Producer Notes (wrike)", "id": "fldT6kpfMIzdQPp9O"},
+      "permalink":                             {"name": "Wrike URL", "id": "fldzLcZ1kAdM7jfDd"},
+      "createdDate":                           {"name": "\ud83d\udcda Created Date (wrike)", "id": "fld29a3UCfmcgreUA"},
+      "project.startDate":                     {"name": "Start Date (wrike)", "id": "fldgVckIUKMTseWUM"},
+      "project.endDate":                       {"name": "End Date (wrike)", "id": "fldcoObtOyVchmRxN"},
+      "project.completedDate":                 {"name": "Completed Date (wrike)", "id": "fldYaEPwyGy2O0iHD"},
+      "project.ownerIds":                      [
+        {"name": "Owner IDs (wrike)", "id": "fldWGZx2ROLRNwwHR"},
+        {"name": "Project Owners", "id": "fld8YsuWv83DIKjWI"}
+      ],
+      "project.customStatusId":                {"name": "Status", "id": "fldDdOBoyiMr9BNzm"},
+      "parentIds":                             {"name": "Parent IDs (wrike)", "id": "fldvWGmdmO6msupqB"},
+      "childIds":                              {"name": "Child IDs (wrike)", "id": "fldO3g6b871kox1zI"},
+      "attachmentCount":                       {"name": "attachmentCount (wrike)", "id": "fldd6s4QnnbRBmmqf"},
+      "customField.Build Number":              {"name": "Build Number (wrike)", "id": "fldwwKFUTjsXKDZ4Y"},
+      "customField.[VID] Go Live Date":        {"name": "Go Live Date (wrike)", "id": "fldymV76vkjexNWi9"},
+      "customField.[VID] Product":             {"name": "Brand Category (wrike)", "id": "fldzkerNdlI4Pv8jW"},
+      "customField.[VID] Partnership":         {"name": "Partnership (wrike)", "id": "fldcM19LZIvM7UV4k"},
+      "customField.[VID] Delivery Date":       {"name": "Delivery Date [ad-hoc project]", "id": "fldbQymJoWAHCQ0FZ"},
+      "customField.[VID] Capture Platform":    {"name": "Capture Platform (wrike)", "id": "fldS71Vfwo1dfbMn0"},
+      "customField.[VID] Production Co":       {"name": "Production Company", "id": "fldDdPcr8KBSLM6RT"},
+      "customField.Notes":                     {"name": "Notes", "id": "fldp0w94clYWxm8QR"},
+      "customField.[VID] Job Number":          {"name": "Job Number (wrike)", "id": "fldjqHzxd0e0a5QCF"},
+      "customField.Asset Type":                {"name": "Asset Type (wrike)", "id": "fldbg5XQeWvuyXhwT"},
+      "customField.Build":                     {"name": "Build (wrike)", "id": "fldG2dOdG8r6oQQdj"},
+      "customField.Project Request Description": {"name": "Description (wrike)", "id": "fldHq32hGSocD8FkO"},
+      "customField.Project Type":             {"name": "Project Type (wrike)", "id": "fldo498H0ApzU6oEz"},
+      "customField.Airtable Project Record ID": {"name": "Airtable Project Record ID (wrike)", "id": "fldYSnMuBAXYpyzuO"}
+    },
+    "linked_fields": {
+      "Project Owners": { "type": "people" },
+      "Status":         { "type": "status", "match": "fuzzy" }
+    },
+    "transforms": {
+      "Producer Notes (wrike)": "html_to_markdown",
+      "Description (wrike)": "html_to_markdown"
+    },
+    "self_links": {
+      "wrike_parent_ids": {"name": "Parent IDs (wrike)", "id": "fldvWGmdmO6msupqB"},
+      "wrike_child_ids":  {"name": "Child IDs (wrike)", "id": "fldO3g6b871kox1zI"},
+      "link_field":       {"name": "Sub-Projects/Assets", "id": "fldozxoip9jEOEDJZ"}
+    },
+    "attachments": {"name": "Attachments (wrike)", "id": "fldA8UHpkmcxBBkaH"}
+  },
+  "tasks": {
+    "field_mapping": {
+      "id":                                    {"name": "Wrike ID", "id": "fld920IJTSZedfva3"},
+      "title":                                 {"name": "Name", "id": "fld46fyk4dbd9FH4M"},
+      "description":                           {"name": "Description (wrike)", "id": "fldoeZ3OHrcYg0wSa"},
+      "permalink":                             {"name": "Permalink (wrike)", "id": "fldtLNDIAsfsrhF2y"},
+      "responsibleIds":                        [
+        {"name": "Assignee IDs (wrike)", "id": "fld8uV6VU4ttD3VOF"},
+        {"name": "Task Owner(s)", "id": "fld8veWEcdv730GOJ"}
+      ],
+      "authorIds":                             {"name": "Author IDs (wrike)", "id": "fldqBC46kmP3mKbzS"},
+      "dates.start":                           {"name": "Start", "id": "flde6qNXyeiSQwbgK"},
+      "dates.due":                             {"name": "End", "id": "fldxOo3zxHayjqctf"},
+      "customStatusId":                        {"name": "Task Status", "id": "fldvZfR9BLQ5fk0jj"},
+      "completedDate":                         {"name": "Completed Date (wrike)", "id": "fld40JKXeq7FEv6vH"},
+      "createdDate":                           {"name": "Created Date (wrike)", "id": "fldEJMtKCd3RH09YC"},
+      "updatedDate":                           {"name": "Updated Date (wrike)", "id": "flduXEyb2lO1rBIBB"},
+      "parentIds|superParentIds":              [
+        {"name": "Project IDs (wrike)", "id": "fldKmprErLys1zHpw"},
+        {"name": "Project", "id": "fld7hWu14MYhdKkqm"}
+      ],
+      "superTaskIds":                          {"name": "Parent Task IDs (wrike)", "id": "fld12vwk7MA60VDSx"},
+      "subTaskIds":                            {"name": "Subtask IDs (wrike)", "id": "fldkqxqOA1CO9CRlV"},
+      "dependencyIds":                         {"name": "Dependency IDs (wrike)", "id": "fldg09s6vFy5Z9wtP"},
+      "billingType":                           {"name": "Billing Type", "id": "fldXomc4BNgaLluse"},
+      "effortAllocation.mode":                 {"name": "Effort Mode", "id": "fld69UozeznP6W2zF"},
+      "effortAllocation.totalEffort":          {"name": "Total Effort", "id": "fldelK3YZbwx96JUq"},
+      "effortAllocation.allocatedEffort":      {"name": "Allocated Effort", "id": "fldeLDlNQmOPRMn7h"},
+      "effortAllocation.responsibleAllocation": {"name": "Responsible Allocation", "id": "fldcFokpIAtL75scu"},
+      "attachmentCount":                       {"name": "attachmentCount (wrike)", "id": "fldOqpdm5lseEl9Aq"},
+      "customField.QC Status":                 {"name": "QC Status", "id": "fldtQSuqcfdroZBui"},
+      "customField.Booked effort":             {"name": "Effort", "id": "fldUZzGuuHTAf5HtU"}
+    },
+    "linked_fields": {
+      "Task Owner(s)": { "type": "people" },
+      "Project":       { "type": "projects" },
+      "Task Status":   { "type": "status", "match": "fuzzy" }
+    },
+    "transforms": {
+      "Description (wrike)": "html_to_markdown",
+      "Responsible Allocation": "stringify_array"
+    },
+    "self_links": {
+      "wrike_parent_ids": {"name": "Parent Task IDs (wrike)", "id": "fld12vwk7MA60VDSx"},
+      "wrike_child_ids":  {"name": "Subtask IDs (wrike)", "id": "fldkqxqOA1CO9CRlV"},
+      "link_field":       {"name": "Subtask", "id": "fldtbkjxw8DPs56UW"}
+    },
+    "dependencies": {
+      "wrike_dependency_ids": {"name": "Dependency IDs (wrike)", "id": "fldg09s6vFy5Z9wtP"},
+      "predecessor_field":    {"name": "Predecessor", "id": "fldi5s9q9Phz8IR0Y"},
+      "successor_field":      {"name": "Dependency", "id": "fldjXoRL9e5IoiolZ"}
+    },
+    "attachments": {"name": "Attachments (wrike)", "id": "fldKPMdzaAfMxhfYd"}
+  },
+  "comments": {
+    "format_template": "Originally posted by {author}\n{date}\n\n{text}\n\n---\n[Imported from Wrike: {comment_id}]"
+  },
+  "timelogs": {
+    "day_fields": ["S", "M", "T", "W", "Th", "F", "Sa"],
+    "total_hours_field": {"name": "total_hours (wrike)", "id": "fldo99UwWZ9WVvGMZ"},
+    "task_field": {"name": "Task", "id": "fldFiR5trtIqQwtPC"}
+  }
+}
