@@ -79,7 +79,8 @@
       "wrike_child_ids":  {"name": "Child IDs (wrike)", "id": "fldO3g6b871kox1zI"},
       "link_field":       {"name": "Sub-Projects/Assets", "id": "fldozxoip9jEOEDJZ"}
     },
-    "attachments": {"name": "Attachments (wrike)", "id": "fldA8UHpkmcxBBkaH"}
+    "attachments": {"name": "Attachments (wrike)", "id": "fldA8UHpkmcxBBkaH"},
+    "parent_folder_field": {"name": "Parent Folder (wrike)", "id": "fld4yjFbgnAc1cTsl"}
   },
   "tasks": {
     "field_mapping": {
