@@ -27,10 +27,10 @@ _CONTACTS_MARKER = "__contacts__"
 # ---------------------------------------------------------------------------
 
 def _transform_html_to_markdown(value: Any) -> Optional[str]:
-    """Convert HTML to markdown, stripping anchor tags."""
+    """Convert HTML to markdown, preserving hyperlinks."""
     if value is None:
         return None
-    text = md(str(value), strip=["a"]).strip()
+    text = md(str(value)).strip()
     return text or None
 
 
